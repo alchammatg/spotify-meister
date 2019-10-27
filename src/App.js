@@ -1,24 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import SearchBox from './Components/search/SearchBox';
+// import './App.css';
 
-function App() {
+// fontawesome imports
+// import { faSkiing, faHeadphones, faGuitar, faUser, faStopwatch } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+/* icons for pref sliders
+energy: skiing
+dance: 
+bass: headphones
+accoustic: guitar
+vocal: user
+tempo: 
+*/
+
+import React from 'react';
+import { UserProvider } from './Hooks/UseUser';
+import Home from './Views/Home';
+
+
+const App = () => {
+  //AUTH SETUP
+  //https://codious.io/user-management-with-react-hooks/
+  
+  //FAKE LOGIN
+  // localStorage.setItem('access_token', 'awesomeAccessToken123456789');
+  localStorage.removeItem('access_token');
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <UserProvider>
+        <Home />
+      </UserProvider>
     </div>
   );
 }

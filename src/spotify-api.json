@@ -1,0 +1,16 @@
+{
+    "urls" : {
+        "auth" : "https://accounts.spotify.com/authorize",
+        "account" : "/me",
+        "base" : "https://api.spotify.com/v1",
+        "search" : "/searach",
+        "categories" : "/browse/categories",
+        "recommendations" : "/recommendations",
+    },
+
+    "client" : {
+        "id" : "7aad31ea207a42b0a30dc8b21efb2c03",
+        "redirect_uri" : "http://localhost:5500/"
+    }
+
+}
