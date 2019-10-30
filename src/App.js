@@ -20,13 +20,9 @@ import Home from './Views/Home';
 
 
 const App = () => {
-  //AUTH SETUP
-  //https://codious.io/user-management-with-react-hooks/
-  
-  //FAKE LOGIN
-  // localStorage.setItem('access_token', 'awesomeAccessToken123456789');
-  localStorage.removeItem('access_token');
 
+  // localStorage.removeItem('access_token');
+  // localStorage.setItem('access_token', 'FAKE');=
 
   return (
     <div>

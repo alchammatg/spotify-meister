@@ -1,17 +1,30 @@
 // Views/Home.jsx
  
 import React from 'react';
-import Login from '../Components/Login'
 import { useUser } from '../Hooks/UseUser'
+import Loading from './Loading';
+import AppBar from '../Components/standard/AppBar'
+const Login = React.lazy(() => import('../Views/Login'));
+const Main = React.lazy(() => import('../Views/Main'));
+
  
 export default function Home() {
-  const { user } = useUser();
+  const { user, ready } = useUser();
+
+  // return (<Loading />);
+  if (ready === false) {
+    return (<Loading message="Retrieving account data..."/>)
+  }
+
 
   return (
     <div>
-        {
-          user.name? <h1>{'Hello, ' + user.name}</h1> : <Login />
+      <AppBar />
+      <React.Suspense fallback={<Loading message="Retrieving account data..."/>}>
+      {
+          user.display_name? <Main /> : <Login />
         }
+      </React.Suspense>
     </div>
   );
 }
