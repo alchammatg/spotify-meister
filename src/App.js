@@ -17,6 +17,7 @@ tempo:
 import React from 'react';
 import { UserProvider } from './Hooks/UseUser';
 import Home from './Views/Home';
+import { Box } from '@material-ui/core'
 
 
 const App = () => {
@@ -25,11 +26,11 @@ const App = () => {
   // localStorage.setItem('access_token', 'FAKE');=
 
   return (
-    <div>
+    <Box>
       <UserProvider>
-        <Home />
+        <Home/>
       </UserProvider>
-    </div>
+    </Box>
   );
 }
 

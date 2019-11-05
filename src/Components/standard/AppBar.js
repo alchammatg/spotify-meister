@@ -1,23 +1,27 @@
 import React from 'react';
 import { AppBar, IconButton, Typography ,
-Toolbar, Button} from '@material-ui/core';
+Toolbar} from '@material-ui/core';
 import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircle from '@material-ui/icons/AccountCircle';
-
+import ExitToApp from '@material-ui/icons/ExitToApp';
 
 export default (props) => {
   return(
     <AppBar position="static">
       <Toolbar>
-        <IconButton edge="start" className={'hello'} color="inherit" aria-label="menu">
-          <MenuIcon />
+        <IconButton edge="start" aria-label="menu">
+          <MenuIcon color="secondary"/>
         </IconButton>
-        <Typography variant="title" className={'null'}>
+        <Typography variant="h6">
           Spotify Meister
         </Typography>
-        <IconButton edge="end" className={'null'} color="inherit" aria-label="menu">
-          <AccountCircle />
-        </IconButton>
+
+        {props.loggedIn?
+          <IconButton onClick={props.logOut} edge="end" className={'null'} color="inherit" aria-label="menu">
+            <ExitToApp color="secondary"/>
+          </IconButton> 
+          :
+          null
+        }
       </Toolbar>
     </AppBar>
   )

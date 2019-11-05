@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Spotify = require('../spotify-api');
+const LOAD_DELAY = 2000;
 
 async function getCurrentUser(accessToken) {
   /*
@@ -36,25 +37,25 @@ export function UserProvider({ children }) {
 
   
   async function handleAccessTokenChange() {
+    setReady(false);
+
     if (!user.name && accessToken) {
       //new access token is not null or undefined
       const spotifyUser = await getCurrentUser(accessToken);
       if (spotifyUser == null){
-        //call to spotify api failed
+        //failed get account from spotify
         console.log("BAD TOKEN");
         setUser(initialState.user);
         localStorage.removeItem('access_token');
-        // setReady(true);
-        setTimeout(setReady, 1000, true); //longer loading screen
+        setTimeout(setReady, LOAD_DELAY, true); //longer loading screen
 
       }
       else {
-        //successful account get
+        //successful get account
         console.log("OK TOKEN");
         localStorage.setItem('access_token', accessToken);
         setUser(spotifyUser);
-        // setReady(true);
-        setTimeout(setReady, 500, true); //longer loading screen
+        setTimeout(setReady, LOAD_DELAY, true); //longer loading screen
       };
     } 
     else if (!accessToken) {
@@ -62,8 +63,7 @@ export function UserProvider({ children }) {
       console.log("NO TOKEN");
       localStorage.removeItem('access_token');
       setUser(initialState.user);
-      // setReady(true);
-      setTimeout(setReady, 500, true); //longer loading screen
+      setTimeout(setReady, LOAD_DELAY, true); //longer loading screen
     };
   }
  
